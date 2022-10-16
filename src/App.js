@@ -17,11 +17,6 @@ function App() {
   }
   const isLoad = useDebounce(loadBooks, query, 500);
 
-  useEffect(() => {
-    console.log(isLoad);
-  }, [isLoad])
-
-
   return (
     <div className="App">
       <input
