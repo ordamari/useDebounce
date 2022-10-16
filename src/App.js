@@ -1,23 +1,43 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
+import { useDebounce } from './hooks/useDebounce';
+import { bookService } from './services/bookService';
 
 function App() {
+  const [query, setQuery] = useState('');
+  const [books, setBooks] = useState([]);
+
+  const loadBooks = async () => {
+    if (!query) {
+      setBooks([]);
+      return;
+    }
+    const books = await bookService.load(query);
+    setBooks(books.docs)
+  }
+  const isLoad = useDebounce(loadBooks, query, 500);
+
+  useEffect(() => {
+    console.log(isLoad);
+  }, [isLoad])
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input
+        value={query}
+        onChange={({ target }) => setQuery(target.value)}
+        placeholder="Search books..."
+      />
+      {
+        isLoad ? (
+          <p>loading...</p>
+        ) : (
+          books.map(book => (
+            <p>{book.title}</p>
+          ))
+        )
+      }
     </div>
   );
 }
