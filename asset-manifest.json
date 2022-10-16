@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/useDebounce/static/css/main.df819236.css",
+    "main.js": "/useDebounce/static/js/main.275384fc.js",
+    "index.html": "/useDebounce/index.html",
+    "main.df819236.css.map": "/useDebounce/static/css/main.df819236.css.map",
+    "main.275384fc.js.map": "/useDebounce/static/js/main.275384fc.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.df819236.css",
+    "static/js/main.275384fc.js"
+  ]
+}
